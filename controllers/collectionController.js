@@ -1,7 +1,9 @@
 const knex = process.env.NODE_ENV === 'production' ? require('knex')(require('../knexfile').production) : require('knex')(require('../knexfile').development);
 const fs = require('fs');
 const path = require('path');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const serverURL = process.env.SERVER_URL || 'http://localhost:8080'
 
 exports.getCollection = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
@@ -60,8 +62,8 @@ exports.deleteItem = (req, res) => {
     knex("collection")
         .where({id: req.params.itemId})
         .then((album) => {
-            if (album[0].image.startsWith("http://localhost:8080/")) {
-                const fileName = path.resolve('public', album[0].image.replace('http://localhost:8080/', ''));
+            if (album[0].image.startsWith(serverURL)) {
+                const fileName = path.resolve('public', album[0].image.replace(server, ''));
                 fs.unlink(fileName, (err) => {
                     if (err) {
                         console.log(err)
@@ -87,7 +89,7 @@ exports.addNewAlbum = (req, res) => {
     const { albumTitle, artist, releaseDate, numTracks, medium, numCopies, description, userId } = req.body;
     knex("collection")
         .insert({
-            image: `http://localhost:8080/images/${req.file.filename}`,
+            image: `${serverURL}/images/${req.file.filename}`,
             albumTitle,
             artist,
             releaseDate,
