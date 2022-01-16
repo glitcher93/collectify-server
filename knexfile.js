@@ -12,5 +12,9 @@ module.exports = {
       database: process.env.MYSQL_DB_NAME,
       charset: 'utf8'
     }
+  },
+  production: {
+    client: mysql,
+    connection: process.env.JAWSDB_URL
   }
 };
