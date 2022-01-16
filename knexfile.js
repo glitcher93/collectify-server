@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   production: {
-    client: mysql,
+    client: 'mysql',
     connection: process.env.JAWSDB_URL
   }
 };
