@@ -63,8 +63,7 @@ exports.deleteItem = (req, res) => {
         .where({id: req.params.itemId})
         .then((album) => {
             if (album[0].image.startsWith(serverURL)) {
-                const fileName = path.resolve('public', album[0].image.replace(server, ''));
-                fs.unlink(fileName, (err) => {
+                fs.unlink("public" + album[0].image.replace(serverURL, ''), (err) => {
                     if (err) {
                         console.log(err)
                     }
