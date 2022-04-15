@@ -1,6 +1,5 @@
 const knex = process.env.NODE_ENV === 'production' ? require('knex')(require('../knexfile').production) : require('knex')(require('../knexfile').development);
 const fs = require('fs');
-const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const serverURL = process.env.SERVER_URL || 'http://localhost:8080'
