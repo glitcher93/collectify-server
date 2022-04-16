@@ -1,7 +1,12 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
-import jwt from 'jsonwebtoken'
+import jwt, { Secret } from 'jsonwebtoken'
 import db from '../db';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const secret = process.env.JWT_SECRET as Secret
 
 const serverURL = process.env.SERVER_URL || 'http://localhost:8080'
 
@@ -28,7 +33,7 @@ interface User {
 
 export const getCollection = (req: Request, res: Response) => {
     const token = req.headers.authorization!.split(' ')[1];
-    const user = jwt.verify(token, 'tempkey') as User;
+    const user = jwt.verify(token, secret) as User;
     db("collection")
         .where({userId: user.id})
         .then((data: CollectionItem[]) => {
