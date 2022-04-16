@@ -1,4 +1,3 @@
-// Update with your config settings.
 import { Knex } from 'knex';
 import dotenv from 'dotenv';
 
@@ -29,5 +28,3 @@ const config: IKnexConfig = {
 };
 
 export default config;
-
-
