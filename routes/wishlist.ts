@@ -17,4 +17,4 @@ router
 router
     .delete('/:itemId', auth, deleteItem);
 
-module.exports = router;
+export default router;
