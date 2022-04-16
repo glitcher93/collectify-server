@@ -1,7 +1,14 @@
 // Update with your config settings.
-require('dotenv').config();
+import { Knex } from 'knex';
+import dotenv from 'dotenv';
 
-module.exports = {
+dotenv.config()
+
+interface IKnexConfig {
+  [key: string]: Knex.Config
+}
+
+const config: IKnexConfig = {
 
   development: {
     client: 'mysql',
@@ -11,10 +18,16 @@ module.exports = {
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DB_NAME,
       charset: 'utf8'
-    }
+    },
+    debug: true,
+    useNullAsDefault: true
   },
   production: {
     client: 'mysql',
     connection: process.env.JAWSDB_URL
   }
 };
+
+export default config;
+
+
