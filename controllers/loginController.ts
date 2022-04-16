@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import db from '../db';
-import jwt from 'jsonwebtoken'
+import jwt, { Secret } from 'jsonwebtoken'
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 
-exports.login = (req: Request, res: Response) => {
+dotenv.config();
+
+const secret = process.env.JWT_SECRET as Secret
+
+const login = (req: Request, res: Response) => {
     const { username, password } = req.body;
     db("users")
         .then(users => {
@@ -16,7 +21,7 @@ exports.login = (req: Request, res: Response) => {
                     firstName: foundUser.firstName,
                     lastName: foundUser.lastName,
                 };
-                const token = jwt.sign(payload, 'tempkey', {expiresIn: '3h'});
+                const token = jwt.sign(payload, secret, {expiresIn: '3h'});
                 res.status(200).json({
                     token
                 });
@@ -28,3 +33,5 @@ exports.login = (req: Request, res: Response) => {
             })
         })
 }
+
+export default login;
