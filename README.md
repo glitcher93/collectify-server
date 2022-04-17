@@ -31,6 +31,8 @@ nigeljdsouza@gmail.com
 - Nodemon
 - JWT
 - Bcrypt
+- TypeScript
+- Concurrently
 
 ### Environment Variables
 
