@@ -20,14 +20,6 @@ nigeljdsouza@gmail.com
 
 ## Tech Stack
 
-### Front-End:
-- React
-- SASS
-- React Router DOM
-- FortAwesome/FontAwesome
-- Axios
-- JWT Decode
-
 ### Back-End:
 
 - Node.js
@@ -41,12 +33,6 @@ nigeljdsouza@gmail.com
 - Bcrypt
 
 ### Environment Variables
-
-#### client/.env
-
-- REACT_APP_CLIENT_ID: contains client ID for use in the Spotify module in the utils folder
-- REACT_APP_REDIRECT_URI: contains the redirect URI for use in the Spotify module in the utils folder
-- REACT_APP_SERVER_URL: contains the API URL that retrieves information from the server
 
 #### server/.env
 
